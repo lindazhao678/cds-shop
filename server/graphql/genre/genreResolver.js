@@ -1,12 +1,11 @@
-const { genre } = require('../../helpers/dbHelper')
+const { genreModel } = require('../../helpers/dbHelper')
 
 const  genreResolver =  {
 
      Query: {
         genres: async () => {
-            return await genre.findAll();
+            return await genreModel.findAll();
         }
     }
-
 };
 module.exports = genreResolver

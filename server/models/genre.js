@@ -1,8 +1,14 @@
-const { DataTypes } = require('sequelize');
 
-module.exports = (sequelize) => {
+
+module.exports = (sequelize, DataTypes) => {
+    
     const Genre = sequelize.define('genre', {
-        genre: { type: DataTypes.STRING }
-    });
+        name: { type: DataTypes.STRING, allowNull: false },
+        // Do not add the timestamp attributes (updatedAt, createdAt)
+    },
+    {
+        timestamps: false
+    }
+    );
     return Genre
 }

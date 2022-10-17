@@ -1,11 +1,14 @@
-const { DataTypes } = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
 
-module.exports = (sequelize) => {
     const Movie = sequelize.define('movie', {
-        title: { type: DataTypes.STRING },
-        rate: { type: DataTypes.INTEGER },
-        stock: { type: DataTypes.INTEGER },
-    });
-
+        title: { type: DataTypes.STRING, allowNull: false },
+        rate: { type: DataTypes.INTEGER, allowNull: false },
+        stock: { type: DataTypes.INTEGER, allowNull: false }
+    },
+    {
+        // Do not add the timestamp attributes (updatedAt, createdAt)
+        timestamps: false
+    }
+    );
     return Movie
 };

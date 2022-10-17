@@ -21,8 +21,9 @@ const Sequelize = require('sequelize');
 
 // The first arguments are the database name, username, password, JSON holding setting the dialect and location to store the database
 const sequelize = new Sequelize('movieshop', 'movieshop', 'MySQL123!', { dialect: 'mysql', host: 'localhost' })
-const movie = require("../models/movie")(sequelize);
-const genre = require("../models/genre")(sequelize);
-genre.hasMany(movie);
+const movieModel = require("../models/movie")(sequelize, Sequelize.DataTypes);
+const genreModel = require("../models/genre")(sequelize, Sequelize.DataTypes);
+// Define one to many relationship between genre and movie
+genreModel.hasMany(movieModel);
 
-module.exports = { sequelize, movie, genre }
+module.exports = { sequelize, movieModel, genreModel }

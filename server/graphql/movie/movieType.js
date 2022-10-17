@@ -22,8 +22,8 @@ const movieType = gql`
         searchMovies(title: String): [MovieType] 
     }
     type Mutation {
-        addMovie(input: MovieType): MovieType
-        editMovie(input: MovieType): MovieType
+        addMovie(input: MovieInput): MovieType
+        editMovie(input: MovieInput): MovieType
         deleteMovie(id: ID): MovieType
     }
 `

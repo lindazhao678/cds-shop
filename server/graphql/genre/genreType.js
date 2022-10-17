@@ -3,11 +3,11 @@ const gql = require('graphql-tag')
 const genreType = gql`
     type GenreType {
         id: ID
-        genre: String
+        name: String
     }
     input GenreInput {
         id: ID
-        genre: String
+        name: String
     }
     type Query {
         genres: [GenreType]
