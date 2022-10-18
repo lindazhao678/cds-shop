@@ -13,6 +13,11 @@ const genreType = gql`
         genres: [GenreType]
         genre(id: ID): GenreType
     }
+    type Mutation {
+        addGenre(input: GenreInput): GenreType
+        editGenre(input: GenreInput): GenreType
+        deleteGenre(id: ID): GenreType
+    }
 `
 
 module.exports = genreType
