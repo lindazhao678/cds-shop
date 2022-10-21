@@ -1,5 +1,7 @@
 <script>
+  // Libaries
   import TableRow from "../components/TableRow.svelte";
+
 </script>
 
 <main>
@@ -18,11 +20,6 @@
       </tr>
     </thead>
     <tbody>
-      <TableRow />
-      <TableRow />
-      <TableRow />
-      <TableRow />
-      <TableRow />
       <TableRow />
     </tbody>
   </table>

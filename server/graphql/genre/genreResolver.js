@@ -1,8 +1,8 @@
 const { genreModel } = require('../../helpers/dbHelper')
 
-const  genreResolver =  {
+const genreResolver = {
 
-     Query: {
+    Query: {
         genres: async () => {
             return await genreModel.findAll()
         },

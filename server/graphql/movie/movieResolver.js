@@ -1,5 +1,4 @@
 const { movieModel, genreModel } = require('../../helpers/dbHelper')
-const movie = require('../../models/movie')
 
 const movieResolver = {
 
@@ -44,7 +43,6 @@ const movieResolver = {
                     {
                         title: input.title,
                         stock: input.stock,
-                        rate: input.rate,
                         genreId: input.genreId
                     },
                     {

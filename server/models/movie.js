@@ -2,7 +2,6 @@ module.exports = (sequelize, DataTypes) => {
 
     const Movie = sequelize.define('movie', {
         title: { type: DataTypes.STRING, allowNull: false },
-        rate: { type: DataTypes.INTEGER, allowNull: false },
         stock: { type: DataTypes.INTEGER, allowNull: false }
     },
     {
