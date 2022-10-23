@@ -2,6 +2,7 @@
   //IMPORT LIBARIES
   import { query, mutation } from "svelte-apollo";
   import { navigate, useParams } from "svelte-navigator";
+  import Joi from "joi";
 
   //IMPORT QUERIES
   import { SINGLE_MOVIE } from "../queries/movies";
@@ -11,6 +12,9 @@
   //STATE
   const params = useParams();
   const movieId = $params.id;
+  let title = "";
+  let stock = "";
+  let genreId = "";
 
   //APOLLO
   const editMovie = mutation(EDIT_MOVIE);
@@ -19,25 +23,43 @@
     variables: { id: movieId },
   });
 
-  //STATE
-  let title = "";
-  let stock = "";
-  let genreId = "";
+  //Validation
+  const schema = Joi.object({
+    title: Joi.string().min(2).max(256).required(),
+    genreId: Joi.required(),
+    stock: Joi.number().required(),
+  });
+
+  function validateForm(schema, data) {
+    const result = schema.validate(data, { abortEarly: false });
+    const { error } = result;
+    if (!error) {
+      return null;
+    } else {
+      const errorData = {};
+      for (let item of error.details) {
+        const name = item.path[0];
+        const message = item.message;
+        errorData[name] = message;
+      }
+      return errorData;
+    }
+  }
 
   //EVENT
   async function handleSubmit() {
-    console.log(movieId);
-    console.log(title);
+    if (validateForm(schema, { title: title, genreId: genreId, stock: stock })) {
+      return;
+    }
     try {
       const result = await editMovie({
         variables: {
           id: movieId,
           title: title,
-          stock: stock,
+          stock: parseInt(stock),
           genreId: genreId,
         },
       });
-      console.log(result);
       navigate("/", { replace: true });
     } catch (error) {
       console.log(error);
@@ -47,7 +69,8 @@
   //If the data for the movie has loaded store it in state
   $: if ($movie.loading) {
     console.log("loading");
-  } else if (title == "") {
+  } else if(title==''){
+    
     title = $movie.data.movie.title;
     genreId = $movie.data.movie.genreId;
     stock = $movie.data.movie.stock;
@@ -76,7 +99,7 @@
       </div>
       <div class="col-6">
         <span id="titleHelpInline" class="form-text">
-          Must be 3-256 characters long.
+          Must be 2-256 characters long.
         </span>
       </div>
     </div>
@@ -96,7 +119,6 @@
               <option value={genre.id}>{genre.name}</option>
             {/each}
           </select>
-          <!-- <p>Selected author ID: {author ? author : "[waiting...]"}</p> -->
         {/if}
       </div>
       <div class="col-6">
@@ -143,6 +165,5 @@
     border: 1px solid #ced4da;
     padding: 0.375rem 0.75rem;
     border-radius: 0.375rem;
-
   }
 </style>

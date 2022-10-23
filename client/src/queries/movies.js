@@ -47,15 +47,11 @@ query SearchMovies($title: String) {
 
 export const ADD_MOVIE = gql`
 mutation AddMovie($title: String, $stock: Int, $genreId: ID) {
-  addMovie(input: { title: $title, stock: $stock, genre: $genreId }) {
+  addMovie(input: { title: $title, stock: $stock, genreId: $genreId }) {
 	id
 	title
 	stock
     genreId
-    genre {
-		id
-        name
-    }
   }
 }
 `;
