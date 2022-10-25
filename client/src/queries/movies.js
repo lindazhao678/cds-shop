@@ -7,6 +7,8 @@ query {
 	title
 	stock
     genreId
+	rate
+	year
 	genre{
 		id
         name
@@ -22,6 +24,8 @@ query Movie($id: ID) {
 	title
     stock
     genreId
+	rate
+	year
 	genre{
 		id
         name
@@ -30,13 +34,15 @@ query Movie($id: ID) {
 }
 `;
 
-export const SEARCH_MOVIE = gql`
+export const SEARCH_MOVIES = gql`
 query SearchMovies($title: String) {
 	searchMovies(title: $title) {
         id
         title
         stock
         genreId
+		rate
+		year
         genre{
 			id
             name
@@ -46,13 +52,25 @@ query SearchMovies($title: String) {
 `;
 
 export const ADD_MOVIE = gql`
-mutation AddMovie($title: String, $stock: Int, $genreId: ID) {
-  addMovie(input: { title: $title, stock: $stock, genreId: $genreId }) {
-	id
-	title
-	stock
-    genreId
-  }
+mutation AddMovie($title: String, $stock: Int, $genreId: ID, $rate: Int, $year: Int) {
+  addMovie(input: { 
+	title: $title
+	stock: $stock
+	genreId: $genreId
+	rate: $rate
+	year: $year 
+	}) {
+		id
+		title
+		stock
+		genreId
+		rate
+		year
+		genre{
+			id
+			name
+		}
+  	}
 }
 `;
 
@@ -63,6 +81,8 @@ mutation DeleteMovie($id: ID) {
 	title
 	stock
 	genreId
+	rate
+	year
 	genre {
 		id
 		name
@@ -72,17 +92,21 @@ mutation DeleteMovie($id: ID) {
 `;
 
 export const EDIT_MOVIE = gql`
-mutation EditMovie($id: ID, $title: String, $stock: Int, $genreId: ID){
+mutation EditMovie($id: ID, $title: String, $stock: Int, $genreId: ID, $rate: Int, $year: Int){
 	editMovie(input: {
 	id: $id
 	title: $title
 	stock: $stock
 	genreId: $genreId
+	rate: $rate, 
+	year: $year
 	}) {
 		id
 		title
 		stock
 		genreId
+		rate
+		year
 		genre {
 			id
 			name

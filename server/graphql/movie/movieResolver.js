@@ -15,7 +15,11 @@ const movieResolver = {
             return await movieModel.findByPk(args.id)
         },
         searchMovies: async (parent, args) => {
-            return await movieModel.find({ name: new RegExp('^' + args.name + '$', 'i') })
+            return await movieModel.findAll(
+                {
+                    where: { title: args.title }
+                }
+            )
         }
     },
     Mutation: {
@@ -43,7 +47,10 @@ const movieResolver = {
                     {
                         title: input.title,
                         stock: input.stock,
-                        genreId: input.genreId
+                        genreId: input.genreId,
+                        rate: input.rate,
+                        yaer: input.year
+
                     },
                     {
                         where: { id: input.id }

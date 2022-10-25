@@ -6,6 +6,8 @@ const movieType = gql`
         title: String
         stock: Int
         genreId: ID
+        rate: Int
+        year: Int
         genre: GenreType
     }
     input MovieInput {
@@ -13,6 +15,8 @@ const movieType = gql`
         title: String
         stock: Int
         genreId: ID
+        rate: Int
+        year: Int
     }
     type Query {
         movies: [MovieType]

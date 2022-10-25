@@ -5,8 +5,8 @@
 </script>
 
 <main>
-  <div class="text-center my-3">
-    <h3>There are 6 movies in the database</h3>
+  <div class="text-center my-5">
+    <h1>All CDs</h1>
   </div>
   <table class="table table-striped">
     <thead>

@@ -25,7 +25,7 @@
 </script>
 
 {#if $movies.loading}
-  <tr><td>Loading.App....</td></tr>
+  <tr><td>Loading...</td></tr>
 {:else if $movies.error}
   <tr><td>Error: {$movies.error.message}</td></tr>
 {:else}
