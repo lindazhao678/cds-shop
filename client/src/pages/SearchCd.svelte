@@ -28,12 +28,11 @@
   async function handleDelete(id) {
     console.log(id);
     try {
-      const result = await deleteMovie({
+      await deleteMovie({
         variables: {
           id: id,
         },
       });
-      console.log(result);
       movies.refetch();
     } catch (error) {
       console.log(error);

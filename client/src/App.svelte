@@ -26,7 +26,7 @@
     <Header />
     <Route path="/"><Home /></Route>
     <Route path="/cds"><Cds /></Route>
-    <Route path="/cd/:id"><Cd /></Route>
+    <Route path="/cd/:id" primary={false}><Cd /></Route>
     <Route path="/cd/add"><AddCd /></Route>
     <Route path="/cd/edit/:id"><EditCd /></Route>
     <Route path="/cd/search"><SearchCd /></Route>

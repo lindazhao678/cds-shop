@@ -78,7 +78,7 @@
           year: parseInt(year),
         },
       });
-      navigate("/", { replace: true });
+      navigate("/cds", { replace: true });
     } catch (error) {
       console.log(error);
     }

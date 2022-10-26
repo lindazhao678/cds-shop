@@ -6,7 +6,7 @@
   import Joi from "joi";
 
   // Queries
-  import { ADD_MOVIE } from "../queries/movies.js";
+  import { ADD_MOVIE, ALL_MOVIES } from "../queries/movies.js";
   import { ALL_GENRES } from "../queries/genres";
 
   // State
@@ -16,6 +16,7 @@
   let rate = "";
   let year = "";
   let errors = null;
+  const movies = query(ALL_MOVIES);
 
   // Apollo
   const addMovie = mutation(ADD_MOVIE);
@@ -24,7 +25,7 @@
   //Validation
   const schema = Joi.object({
     title: Joi.string().min(2).max(256).required(),
-    genreId: Joi.required(),
+    genreId: Joi.string().required(),
     stock: Joi.number().required(),
     rate: Joi.number().required(),
     year: Joi.number().required(),
@@ -48,24 +49,31 @@
     }
   }
 
-  //EVENT
+  //Event
   const handleSubmit = async () => {
     if (
-      validateForm(schema, { title: title, genreId: genreId, stock: stock, rate: rate, year: year })
+      validateForm(schema, {
+        title: title,
+        genreId: genreId,
+        stock: stock,
+        rate: rate,
+        year: year,
+      })
     ) {
       return;
     }
     try {
-      const result = await addMovie({
+      await addMovie({
         variables: {
           title: title,
           genreId: genreId,
           stock: parseInt(stock),
           rate: parseInt(rate),
-          year: parseInt(year)
+          year: parseInt(year),
         },
       });
-      navigate("/", { replace: true });
+      movies.refetch();
+      navigate("/cds", { replace: true });
     } catch (error) {
       console.log(error);
     }

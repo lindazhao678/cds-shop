@@ -17,7 +17,7 @@
     variables: { id: movieId },
   });
 
-  //Event
+  //EVENT
   async function handleDelete(id) {
     try {
       await deleteMovie({
@@ -50,17 +50,19 @@
         </ul>
       </div>
     </div>
-    <button type="button" class="btn btn-info">
-      <Link to={`/cd/edit/${$movie.data.movie.id}`}>Edit</Link>
-    </button>
-    <button
-      on:click={handleDelete($movie.data.movie.id)}
-      type="button"
-      class="btn btn-danger"
-    >
-      Delete
-    </button>
-  {/if} 
+    <div class="d-flex justify-content-center">
+      <button type="button" class="my-5 btn btn-info me-5">
+        <Link to={`/cd/edit/${$movie.data.movie.id}`}>Edit</Link>
+      </button>
+      <button
+        on:click={handleDelete($movie.data.movie.id)}
+        type="button"
+        class="my-5 btn btn-danger"
+      >
+        Delete
+      </button>
+    </div>
+  {/if}
 </main>
 
 <style>
