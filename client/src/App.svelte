@@ -12,6 +12,7 @@
   import AddCd from "./pages/AddCd.svelte";
   import EditCd from "./pages/EditCd.svelte";
   import SearchCd from "./pages/SearchCd.svelte";
+  import PageNotFound from "./pages/PageNotFound.svelte";
 
   // Create an Apollo client and pass it to all child components
   const client = new ApolloClient({
@@ -30,6 +31,7 @@
     <Route path="/cd/add"><AddCd /></Route>
     <Route path="/cd/edit/:id"><EditCd /></Route>
     <Route path="/cd/search"><SearchCd /></Route>
+    <Route><PageNotFound /></Route>
     <Footer />
   </main>
 </Router>
