@@ -6,8 +6,7 @@
   import Joi from "joi";
 
   //IMPORT QUERIES
-  import { SINGLE_MOVIE } from "../queries/movies";
-  import { EDIT_MOVIE } from "../queries/movies";
+  import { SINGLE_MOVIE, ALL_MOVIES, EDIT_MOVIE } from "../queries/movies";
   import { ALL_GENRES } from "../queries/genres";
 
   //STATE
@@ -19,6 +18,7 @@
   let rate = "";
   let year = "";
   let errors = null;
+  const movies = query(ALL_MOVIES);
 
   //APOLLO
   const editMovie = mutation(EDIT_MOVIE);
@@ -68,7 +68,7 @@
       return;
     }
     try {
-      const result = await editMovie({
+      await editMovie({
         variables: {
           id: movieId,
           title: title,
@@ -78,6 +78,7 @@
           year: parseInt(year),
         },
       });
+      movies.refetch();
       navigate("/cds", { replace: true });
     } catch (error) {
       console.log(error);
