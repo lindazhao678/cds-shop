@@ -1,3 +1,5 @@
+// ENTRY FILE
+// Import libaries
 const express = require('express')
 const cors = require('cors')
 const glob = require('glob')
@@ -18,7 +20,7 @@ sequelize.authenticate().then(() => {
 // Setup Express
 const app = express()
 
-// Middleware
+// Middleware for Cross Origin Resource Sharing
 app.use(cors())
 
 // Find all resolvers and put them in registerResolvers array
@@ -41,9 +43,9 @@ const schema = makeExecutableSchema({ typeDefs: mergeTypeDefs(registerTypes), re
 // Route for graphql
 app.use('/graphql', graphqlHTTP({ schema: schema, graphiql: true }))
 
+// Sync db tables & server listening
 sequelize
     .sync({ alter: true }) //sync db tables
-    .then(() => {
-        // Server Listen  
+    .then(() => { 
         app.listen(4000, () => console.log('Listening on port 4000'))
     });

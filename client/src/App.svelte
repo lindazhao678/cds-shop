@@ -1,4 +1,6 @@
+<!-- This is the main svelte file defining all the routes & Creating Appolo client -->
 <script>
+  // Import libaries
   import { Router, Route } from "svelte-navigator";
   import { ApolloClient, InMemoryCache } from "@apollo/client";
   import { setClient } from "svelte-apollo";
@@ -13,7 +15,7 @@
   import EditCd from "./pages/EditCd.svelte";
   import SearchCd from "./pages/SearchCd.svelte";
   import PageNotFound from "./pages/PageNotFound.svelte";
-  import {config} from "./config";
+  import { config } from "./config";
 
   // Create an Apollo client and pass it to all child components
   const client = new ApolloClient({
@@ -24,15 +26,13 @@
 </script>
 
 <Router>
-  <main>
-    <Header />
-    <Route path="/"><Home /></Route>
-    <Route path="/cds"><Cds /></Route>
-    <Route path="/cd/:id" primary={false}><Cd /></Route>
-    <Route path="/cd/add"><AddCd /></Route>
-    <Route path="/cd/edit/:id"><EditCd /></Route>
-    <Route path="/cd/search"><SearchCd /></Route>
-    <Route><PageNotFound /></Route>
-    <Footer />
-  </main>
+  <Header />
+  <Route path="/"><Home /></Route>
+  <Route path="/cds"><Cds /></Route>
+  <Route path="/cd/:id" primary={false}><Cd /></Route>
+  <Route path="/cd/add"><AddCd /></Route>
+  <Route path="/cd/edit/:id"><EditCd /></Route>
+  <Route path="/cd/search"><SearchCd /></Route>
+  <Route><PageNotFound /></Route>
+  <Footer />
 </Router>

@@ -1,5 +1,5 @@
 <script>
-  import { Link } from "svelte-navigator";
+
 </script>
 
 <main>
@@ -7,14 +7,25 @@
     <h1>Hello Admin, Nice to see you here!</h1>
   </div>
   <div class="d-flex justify-content-center">
-    <button type="button" class="btn btn-info me-5">
-      <Link to="/cd/add">Add CDs</Link>
+    <button
+      type="button"
+      class="btn btn-info me-5"
+      on:click={() => (location.href = "/cd/add")}
+    >
+      Add Cds
     </button>
-    <button type="button" class="btn btn-info me-5">
-      <Link to="/cds">View CDs</Link>
-    </button>
-    <button type="button" class="btn btn-info">
-      <Link to="/cd/search">Search CDs</Link>
+    <button
+      type="button"
+      class="btn btn-info me-5"
+      on:click={() => (location.href = "/cds")}
+    >
+      View Cds
+    </button><button
+      type="button"
+      class="btn btn-info"
+      on:click={() => (location.href = "/cd/search")}
+    >
+      Search Cds
     </button>
   </div>
 </main>
