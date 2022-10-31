@@ -15,7 +15,6 @@
   import PageNotFound from "./pages/PageNotFound.svelte";
   import {config} from "./config";
 
-  console.log('API_ENDPOINT', `${config.apiEndpoint}`)
   // Create an Apollo client and pass it to all child components
   const client = new ApolloClient({
     uri: `${config.apiEndpoint}`,
