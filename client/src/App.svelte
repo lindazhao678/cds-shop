@@ -13,10 +13,12 @@
   import EditCd from "./pages/EditCd.svelte";
   import SearchCd from "./pages/SearchCd.svelte";
   import PageNotFound from "./pages/PageNotFound.svelte";
+  import {config} from "./config";
 
+  console.log('API_ENDPOINT', `${config.apiEndpoint}`)
   // Create an Apollo client and pass it to all child components
   const client = new ApolloClient({
-    uri: "http://localhost:4000/graphql",
+    uri: `${config.apiEndpoint}`,
     cache: new InMemoryCache(),
   });
   setClient(client);
