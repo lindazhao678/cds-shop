@@ -1,7 +1,7 @@
 {
-  "name": "movie-shop",
+  "name": "cds-shop-server",
   "version": "1.0.0",
-  "description": "movie shop graphql api",
+  "description": "cds shop graphql api",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
